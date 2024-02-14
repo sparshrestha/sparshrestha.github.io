@@ -11,12 +11,14 @@ TABLE OF CONTENT
 5.0 LAYOUT
 6.0 COMPONENT
 |  6.1 CTA
-|  6.2 FORM
-|  6.3 BUTTON
+|  6.2 BUTTON
+|  6.3 CARD
 7.0 SECTION
 |  7.1 HEADER
 |  7.2 HERO
-|  7.3 FOOTER
+|  7.3 FEATURE
+|  7.4 CLOSE
+|  7.5 FOOTER
 8.0 MEDIA
 |  8.1 768PX
 |  8.2 1024PX
@@ -48,11 +50,8 @@ TABLE OF CONTENT
 
   /* BACKGROUND COLOR */
   
-  --ui-color-background-primary: var(--ui-color-n-000);
-  
-  /* FORM COLOR */
-
-  --ui-color-form-input: var(--ui-color-n-100);
+  --ui-color-background-primary  : var(--ui-color-n-000);
+  --ui-color-background-secondary: var(--ui-color-n-100);
 
   /* TYPOGRAPHY COLOR */
 
@@ -72,12 +71,16 @@ TABLE OF CONTENT
   /* FONT SIZE */
 
   --ui-typography-h1: 1.9375rem;
+  --ui-typography-h2: 1.5625rem;
+  --ui-typography-h4: 1rem;
   --ui-typography-p : 1rem;
   --ui-typography-s : .8125rem;
 
   /* LEADING */
 
   --ui-typography-h1-leading: 1.2;
+  --ui-typography-h2-leading: 1.2;
+  --ui-typography-h4-leading: 1.25;
   --ui-typography-p-leading : 1.5;
 
   /* MARGIN */
@@ -96,14 +99,16 @@ TABLE OF CONTENT
   --ui-layout-gutter   : 1rem;
 
   /* GAP */
-  
-  --ui-gap-cta : .75rem;
-  --ui-gap-hero: 2rem;
+
+  --ui-gap-cta    : .75rem;
+  --ui-gap-hero   : 2rem;
+  --ui-gap-feature: 2rem;
+  --ui-gap-card   : 1.25rem;
 
   /* BORDER RADIUS */
   
   --ui-radius-button: 5rem;
-  --ui-radius-input : 5rem;
+  --ui-radius-card  : .5rem;
 
 }
 
@@ -140,13 +145,30 @@ a {
 }
 
 h1,
+h2,
+h4,
 p { margin-top: 0; }
 
+h1,
+h2,
+h4 { color: var(--ui-color-typography-heading); }
+
+h1,
+h2 { margin-bottom: var(--ui-typography-margin-heading); }
+
 h1 {
-  color: var(--ui-color-typography-heading);
   font-size: var(--ui-typography-h1);
   line-height: var(--ui-typography-h1-leading);
-  margin-bottom: var(--ui-typography-margin-heading);
+}
+
+h2 {
+  font-size: var(--ui-typography-h2);
+  line-height: var(--ui-typography-h2-leading);
+}
+
+h4 {
+  font-size: var(--ui-typography-h4);
+  line-height: var(--ui-typography-h4-leading);
 }
 
 p { margin-bottom: var(--ui-typography-margin-body); }
@@ -210,61 +232,9 @@ svg {
 
 /*--------------------------------------------------------------
 |
-| 6.2 FORM
+| 6.2 BUTTON
 |
 --------------------------------------------------------------*/
-
-input,
-button {
-  color: inherit;
-  font-family: inherit;
-  font-size: var(--ui-typography-p);
-  line-height: 1;
-  margin: 0;
-  outline: none;
-  text-rendering: inherit;
-  text-transform: none;
-}
-
-/* FORM */
-
-form { width: 100%; }
-
-.ui-component-form {
-  background-color: var(--ui-color-form-input);
-  border-radius: var(--ui-radius-input);
-  grid-template-columns: minmax(0, 1fr) auto;
-  padding: .25rem;
-}
-
-/* INPUT */
-
-::placeholder { color: var(--ui-color-typography-note); }
-
-.ui-component-input {
-  background-color: var(--ui-color-form-input);
-  border: .0625rem solid var(--ui-color-form-input);
-  border-radius: var(--ui-radius-input);
-}
-
-.ui-component-input-medium {
-  height: 2.5rem;
-  padding: .625rem 1rem .75rem;
-}
-
-/*--------------------------------------------------------------
-|
-| 6.3 BUTTON
-|
---------------------------------------------------------------*/
-
-button {
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  display: block;
-  padding: 0;
-}
 
 .ui-component-button {
   border: .0625rem solid var(--ui-color-brand);
@@ -280,10 +250,34 @@ button {
   color: var(--ui-color-typography-button);
 }
 
-.ui-component-button-medium {
-  padding: .625rem .875rem .75rem;
+.ui-component-button-normal {
+  padding: .75rem 1rem .875rem;
   width: fit-content;
 }
+
+.ui-component-button-small {
+  font-size: var(--ui-typography-s);
+  padding: .5rem .75rem .5625rem;
+}
+
+/*--------------------------------------------------------------
+|
+| 6.3 CARD
+|
+--------------------------------------------------------------*/
+
+.ui-component-card {
+  background-color: var(--ui-color-background-secondary);
+  border-radius: var(--ui-radius-card);
+  overflow: hidden;
+  padding: 2.25rem 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.ui-component-card--image { margin-bottom: 2.25rem; }
+
+.ui-component-card--title { margin-bottom: .5rem; }
 
 /*--------------------------------------------------------------
 7.0 SECTION
@@ -314,25 +308,44 @@ button {
   text-align: center;
 }
 
-/* LOGO */
+.ui-section-hero--image { margin-top: var(--ui-gap-hero); }
 
-.ui-section-hero--logo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: max-content;
+/*--------------------------------------------------------------
+|
+| 7.3 FEATURE
+|
+--------------------------------------------------------------*/
+
+.ui-section-feature {
+  padding-bottom: 1.25rem;
+  padding-top: 1.25rem;
+  text-align: center;
 }
 
-/* CONTENT */
-
-.ui-section-hero--content {
-  margin-bottom: var(--ui-gap-hero);
-  margin-top: var(--ui-gap-hero);
+.ui-section-feature__layout {
+  margin-top: var(--ui-gap-feature);
+  row-gap: var(--ui-gap-card);
 }
 
 /*--------------------------------------------------------------
 |
-| 7.3 FOOTER
+| 7.4 CLOSE
+|
+--------------------------------------------------------------*/
+
+.ui-section-close {
+  padding-bottom: 5rem;
+  padding-top: 5rem;
+  text-align: center;
+}
+
+.ui-section-close--logo {
+  margin-bottom: var(--ui-typography-margin-body);
+}
+
+/*--------------------------------------------------------------
+|
+| 7.5 FOOTER
 |
 --------------------------------------------------------------*/
 
@@ -377,6 +390,8 @@ button {
     /* FONT SIZE */
 
     --ui-typography-h1: 2.1875rem;
+    --ui-typography-h2: 1.75rem;
+    --ui-typography-h4: 1.125rem;
     --ui-typography-p : 1.125rem;
     --ui-typography-s : .875rem;
 
@@ -395,7 +410,9 @@ button {
 
     /* GAP */
 
-    --ui-gap-hero: 3rem;
+    --ui-gap-hero   : 3rem;
+    --ui-gap-feature: 3rem;
+    --ui-gap-card   : 1.5rem;
 
   }
 
@@ -409,14 +426,35 @@ button {
     margin-right: auto;
   }
 
-  .ui-layout-column-4 {
-    width: calc((var(--ui-layout-grid) * 4) +
-           (var(--ui-layout-gutter) * 3));
+  .ui-layout-grid-3 {
+    column-gap: var(--ui-layout-gutter);
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+
+  .ui-layout-grid-3 div:nth-of-type(3) {
+    left: calc(50% + (var(--ui-layout-gutter) / 2));
+    position: relative;
   }
 
   .ui-layout-column-6 {
     width: calc((var(--ui-layout-grid) * 6) +
            (var(--ui-layout-gutter) * 5));
+  }
+
+  /*------------------------------------------------------------
+  COMPONENT
+  ------------------------------------------------------------*/
+
+  /*------------------------------------------------------------
+  |
+  | CARD
+  |
+  ------------------------------------------------------------*/
+
+  .ui-component-card {
+    padding-left: 2.25rem;
+    padding-right: 2.25rem;
   }
 
   /*------------------------------------------------------------
@@ -436,13 +474,22 @@ button {
 
   /*------------------------------------------------------------
   |
-  | HERO
+  | FEATURE
   |
   ------------------------------------------------------------*/
 
-  /* LOGO */
+  .ui-section-feature {
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+  }
 
-  .ui-section-hero--logo svg { width: 4rem; }
+  /*------------------------------------------------------------
+  |
+  | CLOSE
+  |
+  ------------------------------------------------------------*/
+
+  .ui-section-close--logo { width: 4rem; }
 
   /*------------------------------------------------------------
   |
@@ -497,6 +544,10 @@ button {
   
   .ui-layout-container { width: 60rem; }
 
+  .ui-layout-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+  .ui-layout-grid-3 div:nth-of-type(3) { position: static; }
+
 }
 
 /*--------------------------------------------------------------
@@ -522,6 +573,7 @@ button {
     /* FONT SIZE */
 
     --ui-typography-h1: 2.75rem;
+    --ui-typography-h2: 2.1875rem;
     --ui-typography-h4: 1.4375rem;
 
     /* MARGIN */
@@ -539,8 +591,10 @@ button {
     --ui-layout-gutter: 2rem;
 
     /* GAP */
-
-    --ui-gap-hero: 4rem;
+    
+    --ui-gap-hero   : 4rem;
+    --ui-gap-feature: 4rem;
+    --ui-gap-card   : 2rem;
     
   }
 
@@ -555,6 +609,26 @@ button {
   ------------------------------------------------------------*/
   
   .ui-layout-container { width: 70rem; }
+
+  /*------------------------------------------------------------
+  COMPONENT
+  ------------------------------------------------------------*/
+
+  /*------------------------------------------------------------
+  |
+  | BUTTON
+  |
+  ------------------------------------------------------------*/
+
+  .ui-component-button-normal {
+    padding-bottom: 1.125rem;
+    padding-top: 1rem;
+  }
+
+  .ui-component-button-small {
+    padding-bottom: .6875rem;
+    padding-top: .625rem;
+  }
 
   /*------------------------------------------------------------
   SECTION
@@ -578,6 +652,28 @@ button {
   ------------------------------------------------------------*/
 
   .ui-section-hero {
+    padding-bottom: 7.5rem;
+    padding-top: 7.5rem;
+  }
+
+  /*------------------------------------------------------------
+  |
+  | FEATURE
+  |
+  ------------------------------------------------------------*/
+
+  .ui-section-feature {
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+  }
+
+  /*------------------------------------------------------------
+  |
+  | CLOSE
+  |
+  ------------------------------------------------------------*/
+
+  .ui-section-close {
     padding-bottom: 7.5rem;
     padding-top: 7.5rem;
   }
