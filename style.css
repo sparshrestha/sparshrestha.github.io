@@ -237,7 +237,7 @@ svg {
 --------------------------------------------------------------*/
 
 .ui-component-button {
-  border: .0625rem solid var(--ui-color-brand);
+  border: 1.0625rem solid var(--ui-color-brand);
   border-radius: var(--ui-radius-button);
   display: block;
   font-weight: 700;
